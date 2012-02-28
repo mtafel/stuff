@@ -1,0 +1,3 @@
+These are a few scripts that I've worked on
+
+csv2pgsql.py is a python script that I am working on that can convert a csv to a postgresql table. It works okay but definitley needs to work. Trying to determine field types based on column data is tricky. 
