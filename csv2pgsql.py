@@ -1,4 +1,9 @@
 #!/usr/bin/python
+
+
+
+__author__ = "Michael Tafel <michael.tafel@gmail.com>"
+__license__ = "GPL"
 import csv, sys, re, pg
 
 
