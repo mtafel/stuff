@@ -3,3 +3,5 @@ These are a few scripts that I've worked on
 csv2pgsql.py is a python script that I am working on that can convert a csv to a postgresql table. It works okay but its not close to being complete. Trying to determine field types based on column data is tricky. It uses the pygresql library for accessing postgresql. 
 
 cairoplot_db_example.py is a python script that iterates through a postgresql table and creates a nice chart using the CairoPlot.py charting library. 
+
+google_geocode_example.py is a python script that uses the google geocoding service and geocodes a table inside of a PostgreSQL database. Its fast and works well. Would like to convert to OO. 
