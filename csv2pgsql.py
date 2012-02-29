@@ -153,11 +153,11 @@ class Csv2pgsql:
   
 if __name__ == '__main__':
     
-    dbname = 'postgis_scratch'
-    host =  'postgresql'
+    dbname = 'database_name'
+    host =  'host'
     port =   5432 
-    user = 'gisteam' 
-    passwd = 'gisDB1'      
+    user = 'user'
+    passwd = 'password'      
     conn = DBconnect(dbname, host, port,user,passwd).connect()
     csvfile = '/home/mtafel/Dropbox/data/todprojects.csv'
    
