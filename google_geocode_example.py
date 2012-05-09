@@ -1,12 +1,15 @@
 #Script populating solar data from pvwatts web service
 #Mike Tafel 
 #2010/07/26
-import urllib, urllib2, pg, simplejson as json, time, sys,  hashlib, hmac, base64, urlparse
+import urllib, urllib2, pg, simplejson as json, time, sys,  urlparse
 #DB connection properties
 db = pg.connect(dbname = 'database_name', host= 'host', port= 5432, user = 'user',passwd= 'password')
 
-#db query sql CHANGE TO TABLE NAME
-selectallSql = "select * FROM sem_qcew_geocode WHERE latitude < 0 OR latitude IS NULL"
+
+#set table name here
+table_name = 'table name'
+#Select which records you want to geocode
+selectallSql = "select * FROM %(table_name)s WHERE latitude < 0 OR latitude IS NULL" % { 'table_name' : table_name}
 
 #db queries
 sel = db.query(selectallSql) 
@@ -59,16 +62,16 @@ while x < rows:
         precision = data["results"][0]["geometry"]["location_type"]
         #If the geocode result is outside of the region, don't use it. 
         if long < -106 or long > -104 or lat > 41 or lat < 38:
-           update_query = "UPDATE sem_qcew_geocode SET latitude = -2, precision = '%(prec)s' WHERE objectid = '%(objectid)s'" % {'objectid' : objectid, 'prec': precision}
+           update_query = "UPDATE %(table_name)s SET latitude = -2, precision = '%(prec)s' WHERE objectid = '%(objectid)s'" % {'table_name' : table_name, 'objectid' : objectid, 'prec': precision}
           db.query(update_query)
            print "out of region"
         else:
-        values = {'long' : long, 'lat' : lat, 'prec': precision, 'objectid' : objectid}
-        update_query = "UPDATE sem_qcew_geocode SET longitude = '%(long)s', latitude = '%(lat)s', precision = '%(prec)s' WHERE objectid = '%(objectid)s'" % values
+        values = {'table_name' : table_name, 'long' : long, 'lat' : lat, 'prec': precision, 'objectid' : objectid}
+        update_query = "UPDATE %(table_name)s SET longitude = '%(long)s', latitude = '%(lat)s', precision = '%(prec)s' WHERE objectid = '%(objectid)s'" % values
         db.query(update_query)
     elif status != "OK":
         #update the data
-        update_query = "UPDATE sem_qcew_geocode SET latitude = -1 WHERE objectid = '%(objectid)s'" % {'objectid' : objectid}
+        update_query = "UPDATE %(table_name)s SET latitude = -1 WHERE objectid = '%(objectid)s'" % {'table_name' : table_name, 'objectid' : objectid}
         
         db.query(update_query)
      

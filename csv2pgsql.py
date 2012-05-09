@@ -153,11 +153,11 @@ class Csv2pgsql:
   
 if __name__ == '__main__':
     
-    dbname = 'database_name'
-    host =  'host'
+    dbname = 'postgis'
+    host =  'postgresql'
     port =   5432 
-    user = 'user'
-    passwd = 'password'      
+    user = 'gisteam'
+    passwd = 'gisDB1'      
     conn = DBconnect(dbname, host, port,user,passwd).connect()
     csvfile = '/home/mtafel/Dropbox/data/todprojects.csv'
    
