@@ -1,5 +1,10 @@
+#!/usr/bin/python
+__author__ = "Michael Tafel <michael.tafel@gmail.com>"
+__license__ = "GPL"
+
+
 #Script populating solar data from pvwatts web service
-#Mike Tafel 
+
 #2010/07/26
 import urllib, urllib2, pg, simplejson as json, time, sys,  urlparse
 #DB connection properties
